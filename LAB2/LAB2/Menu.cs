@@ -27,6 +27,10 @@ namespace LAB2
 
         private void button2_Click(object sender, EventArgs e)
         {
+            using (var form = new Task2())
+            {
+                form.ShowDialog();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
