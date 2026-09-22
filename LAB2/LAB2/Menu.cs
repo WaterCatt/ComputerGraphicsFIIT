@@ -31,6 +31,10 @@ namespace LAB2
 
         private void button3_Click(object sender, EventArgs e)
         {
+            using (var form = new Task3())
+            {
+                form.ShowDialog();
+            }
         }
 
         private void Menu_Load(object sender, EventArgs e)
