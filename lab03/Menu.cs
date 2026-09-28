@@ -43,7 +43,7 @@ namespace lab03
 
         private void button5_Click(object sender, EventArgs e)
         {
-            using (var form = new Form1())
+            using (var form = new task2())
             {
                 form.ShowDialog();
             }
