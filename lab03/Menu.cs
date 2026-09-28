@@ -50,7 +50,7 @@ namespace lab03
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            using (var form = new Form1())
+            using (var form = new task3())
             {
                 form.ShowDialog();
             }
