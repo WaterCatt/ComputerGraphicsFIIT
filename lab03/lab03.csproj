@@ -9,4 +9,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="task1c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="task1b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

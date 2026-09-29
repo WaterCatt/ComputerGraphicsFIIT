@@ -19,7 +19,7 @@ namespace lab03
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var form = new Form1())
+            using (var form = new task1a())
             {
                 form.ShowDialog();
             }
@@ -27,7 +27,7 @@ namespace lab03
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var form = new Form1())
+            using (var form = new task1b())
             {
                 form.ShowDialog();
             }
@@ -35,7 +35,7 @@ namespace lab03
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (var form = new Form1())
+            using (var form = new task1c())
             {
                 form.ShowDialog();
             }
