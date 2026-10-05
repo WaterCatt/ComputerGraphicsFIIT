@@ -143,5 +143,32 @@ namespace Lab4
             else
                 label6.Text = "Пересечения: " + string.Join("; ", res.Select(p => $"({p.X:F1},{p.Y:F1})"));
         }
+        private bool EdgeIntersect(PointF A, PointF B, PointF C, PointF D, out PointF P)
+        {
+            P = new PointF();
+
+            PointF CD = new PointF(D.X - C.X, D.Y - C.Y);
+            PointF n = new PointF(-CD.Y, CD.X);
+            PointF AB = new PointF(B.X - A.X, B.Y - A.Y);
+
+            float denom = n.X * AB.X + n.Y * AB.Y;
+            if (Math.Abs(denom) < 1e-6f)
+                return false;
+
+            float t = -(n.X * (A.X - C.X) + n.Y * (A.Y - C.Y)) / denom;
+
+            if (t < 0 || t > 1)
+                return false;
+
+            P = new PointF(A.X + t * AB.X, A.Y + t * AB.Y);
+
+            float t1;
+            if (Math.Abs(CD.X) > Math.Abs(CD.Y))
+                t1 = (P.X - C.X) / CD.X;
+            else
+                t1 = (P.Y - C.Y) / CD.Y;
+
+            return (t1 >= 0 && t1 <= 1);
+        }
     }
 }
