@@ -92,30 +92,49 @@ namespace Lab4
 
         private bool PointInPolygon(PointF p, List<PointF> poly)
         {
-            bool inside = false;
+            int crossings = 0;
 
-            for (int i = 0, j = poly.Count - 1; i < poly.Count; j = i++)
+            for (int i = 0; i < poly.Count; i++)
             {
-                if (((poly[i].Y > p.Y) != (poly[j].Y > p.Y)) && (p.X < (poly[j].X - poly[i].X) * (p.Y - poly[i].Y) / (poly[j].Y - poly[i].Y) + poly[i].X))
-                {
-                    inside = !inside;
-                }
+                PointF a = poly[i];
+                PointF b = poly[(i + 1) % poly.Count];
+
+                if ((a.Y > p.Y) == (b.Y > p.Y))
+                    continue;
+
+                double x = a.X + (b.X - a.X) * (p.Y - a.Y) / (b.Y - a.Y);
+
+                if (x > p.X)
+                    crossings++;
             }
 
-            return inside;
+            return crossings % 2 != 0;
         }
 
         private double DistPointToSegment(PointF p, PointF a, PointF b)
         {
-            double dx = b.X - a.X, dy = b.Y - a.Y;
-            double t = ((p.X - a.X) * dx + (p.Y - a.Y) * dy) / (dx * dx + dy * dy);
-            if (t < 0)
-                t = 0;
-            else if (t > 1)
-                t = 1;
-            double x = a.X + t * dx;
-            double y = a.Y + t * dy;
-            return Math.Sqrt((p.X - x) * (p.X - x) + (p.Y - y) * (p.Y - y));
+            double dx = b.X - a.X;
+            double dy = b.Y - a.Y;
+
+            double lengthSquared = dx * dx + dy * dy;
+
+            double t = 0;
+
+            if (lengthSquared > 0)
+            {
+                t = ((p.X - a.X) * dx + (p.Y - a.Y) * dy) / lengthSquared;
+            }
+
+            if (t < 0) t = 0;
+            else if (t > 1) t = 1;
+
+            double nearestX = a.X + t * dx;
+            double nearestY = a.Y + t * dy;
+
+            double diffX = p.X - nearestX;
+            double diffY = p.Y - nearestY;
+
+            return Math.Sqrt((diffX * diffX) + (diffY * diffY));
         }
 
     }
