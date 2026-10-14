@@ -168,7 +168,7 @@ namespace lab5
             float startX = (drawPanel.Width - width)/2;
             float startY = (drawPanel.Height - height)/2;
 
-            int maxLevel = 0;
+            int maxLevel = 1;
             foreach (var line in lines)
             {
                 if (line.level > maxLevel)
