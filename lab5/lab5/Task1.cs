@@ -162,8 +162,8 @@ namespace lab5
 
             float mult = Math.Min((drawPanel.Width-20)/graphWidth, (drawPanel.Height-20)/graphHeight);
 
-            float width = graphWidth * mult;
-            float height = graphHeight * mult;
+            float width = (maxX - minX) * mult;
+            float height = (maxY - minY) * mult;
 
             float startX = (drawPanel.Width - width)/2;
             float startY = (drawPanel.Height - height)/2;
