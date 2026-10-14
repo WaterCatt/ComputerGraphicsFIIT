@@ -114,8 +114,8 @@ namespace lab5
                 }
                 else if (sym == '+')
                 {
-                    double randomAngle = (double)randBox.Value;
-                    dir += angle + (random.NextDouble()*2-1) * randomAngle;
+                    double randAngle = (double)randBox.Value;
+                    dir += angle + (random.NextDouble()*2-1) * randAngle;
                 }
                 else if (sym == '-')
                 {
