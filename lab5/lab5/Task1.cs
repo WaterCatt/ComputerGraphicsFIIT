@@ -55,9 +55,9 @@ namespace lab5
                 return;
             }
 
-            string commands = buildString((int)iterBox.Value);
+            string s = buildString((int)iterBox.Value);
 
-            createLines(commands);
+            createLines(s);
             drawPanel.Invalidate();
         }
 
@@ -95,7 +95,7 @@ namespace lab5
             double dir = startDir;
             int level = 0;
 
-            Stack<(PointF position, double direction, int level)> stack = new Stack<(PointF position, double direction, int level)>();
+            Stack<(PointF pos, double dir, int level)> stack = new Stack<(PointF pos, double dir, int level)>();
 
             foreach (char sym in s)
             {
