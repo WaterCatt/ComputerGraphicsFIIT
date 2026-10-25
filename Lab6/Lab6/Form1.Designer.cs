@@ -4,7 +4,7 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private Panel polyhedronDrawer;
+        private PolyhedronDrawer polyhedronDrawer;
 
         private System.Windows.Forms.Panel panelControls;
         private System.Windows.Forms.ComboBox cmbFigure;
@@ -58,7 +58,7 @@
 
         private void InitializeComponent()
         {
-            polyhedronDrawer = new Panel();
+            polyhedronDrawer = new PolyhedronDrawer();
             panelControls = new Panel();
             cmbFigure = new ComboBox();
             cmbProjection = new ComboBox();
