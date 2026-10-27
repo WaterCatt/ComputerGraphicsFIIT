@@ -103,5 +103,69 @@ namespace Lab6
             dodeca.BuildEdges();
             return dodeca;
         }
+
+        public static Polyhedron CreateTetrahedron()
+        {
+            double a = 1.0 / System.Math.Sqrt(3.0);
+            var p = new Polyhedron();
+            p.Vertices.Add(new Point3D(a, a, a));
+            p.Vertices.Add(new Point3D(a, -a, -a));
+            p.Vertices.Add(new Point3D(-a, a, -a));
+            p.Vertices.Add(new Point3D(-a, -a, a));
+
+            p.Faces.Add(new Polygon(new List<int> { 0, 1, 2 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 3, 1 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 2, 3 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 3, 2 }));
+
+            p.BuildEdges();
+            return p;
+        }
+
+        public static Polyhedron CreateCube()
+        {
+            var p = new Polyhedron();
+            p.Vertices.Add(new Point3D(-1, -1, -1));
+            p.Vertices.Add(new Point3D(1, -1, -1));
+            p.Vertices.Add(new Point3D(1, 1, -1));
+            p.Vertices.Add(new Point3D(-1, 1, -1));
+            p.Vertices.Add(new Point3D(-1, -1, 1));
+            p.Vertices.Add(new Point3D(1, -1, 1));
+            p.Vertices.Add(new Point3D(1, 1, 1));
+            p.Vertices.Add(new Point3D(-1, 1, 1));
+
+            p.Faces.Add(new Polygon(new List<int> { 0, 1, 2, 3 }));
+            p.Faces.Add(new Polygon(new List<int> { 4, 5, 6, 7 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 4, 7, 3 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 5, 6, 2 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 1, 5, 4 }));
+            p.Faces.Add(new Polygon(new List<int> { 3, 2, 6, 7 }));
+
+            p.BuildEdges();
+            return p;
+        }
+
+        public static Polyhedron CreateOctahedron()
+        {
+            var p = new Polyhedron();
+            p.Vertices.Add(new Point3D(1, 0, 0));
+            p.Vertices.Add(new Point3D(-1, 0, 0));
+            p.Vertices.Add(new Point3D(0, 1, 0));
+            p.Vertices.Add(new Point3D(0, -1, 0));
+            p.Vertices.Add(new Point3D(0, 0, 1));
+            p.Vertices.Add(new Point3D(0, 0, -1));
+
+            p.Faces.Add(new Polygon(new List<int> { 0, 2, 4 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 4, 3 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 3, 5 }));
+            p.Faces.Add(new Polygon(new List<int> { 0, 5, 2 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 4, 2 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 3, 4 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 5, 3 }));
+            p.Faces.Add(new Polygon(new List<int> { 1, 2, 5 }));
+
+            p.BuildEdges();
+            return p;
+        }
     }
 }
