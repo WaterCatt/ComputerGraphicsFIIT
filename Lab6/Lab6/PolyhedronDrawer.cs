@@ -36,7 +36,7 @@ namespace Lab6
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (polyhedron == null || camera == null) 
+            if (polyhedron == null || camera == null)
                 return;
 
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -108,18 +108,15 @@ namespace Lab6
 
             if (camera.Type == ProjectionType.Perspective)
             {
-                if (Math.Abs(w) < 0.001)
-                {
-                    result = PointF.Empty;
-                    return false;
-                }
+                if (w < 0.05)
+                    w = 0.05;
+
                 x /= w;
                 y /= w;
             }
 
             float centerX = Width / 2;
             float centerY = Height / 2;
-
             float scale = camera.Type == ProjectionType.Perspective ? 100f : 120f;
 
             result = new PointF(centerX + (float)(x * scale), centerY - (float)(y * scale));

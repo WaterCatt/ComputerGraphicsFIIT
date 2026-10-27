@@ -31,7 +31,27 @@ namespace Lab6
 
             btnScale.Click += (s, e) =>
             {
-                polyhedronDrawer.Polyhedron.ScaleAroundCenter((double)numSx.Value, (double)numSy.Value, (double)numSz.Value);
+                double sx = (double)numSx.Value;
+                double sy = (double)numSy.Value;
+                double sz = (double)numSz.Value;
+
+                const double minScale = 0.01;
+                if (Math.Abs(sx) < minScale)
+                    sx = Math.Sign(sx) == 0 ? minScale : Math.Sign(sx) * minScale;
+                if (Math.Abs(sy) < minScale)
+                    sy = Math.Sign(sy) == 0 ? minScale : Math.Sign(sy) * minScale;
+                if (Math.Abs(sz) < minScale)
+                    sz = Math.Sign(sz) == 0 ? minScale : Math.Sign(sz) * minScale;
+
+                const double maxScale = 10.0;
+                if (Math.Abs(sx) > maxScale)
+                    sx = Math.Sign(sx) * maxScale;
+                if (Math.Abs(sy) > maxScale)
+                    sy = Math.Sign(sy) * maxScale;
+                if (Math.Abs(sz) > maxScale)
+                    sz = Math.Sign(sz) * maxScale;
+
+                polyhedronDrawer.Polyhedron.ScaleAroundCenter(sx, sy, sz);
                 polyhedronDrawer.Invalidate();
             };
 
