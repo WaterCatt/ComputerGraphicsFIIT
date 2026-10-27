@@ -86,18 +86,16 @@ namespace Lab6
             Point3D y = new Point3D(0, t, 0);
             Point3D z = new Point3D(0, 0, t);
 
-            using (var penX = new Pen(Color.Gray, 1) { DashStyle = DashStyle.Dot })
-            using (var penY = new Pen(Color.Gray, 1) { DashStyle = DashStyle.Dot })
-            using (var penZ = new Pen(Color.Gray, 1) { DashStyle = DashStyle.Dot })
+            using (var pen = new Pen(Color.Gray, 1) { DashStyle = DashStyle.Dot })
             {
                 if (TryProject(o, transformMatrix, out PointF po))
                 {
                     if (TryProject(x, transformMatrix, out PointF px))
-                        g.DrawLine(penX, po, px);
+                        g.DrawLine(pen, po, px);
                     if (TryProject(y, transformMatrix, out PointF py))
-                        g.DrawLine(penY, po, py);
+                        g.DrawLine(pen, po, py);
                     if (TryProject(z, transformMatrix, out PointF pz))
-                        g.DrawLine(penZ, po, pz);
+                        g.DrawLine(pen, po, pz);
                 }
             }
         }

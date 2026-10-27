@@ -112,6 +112,7 @@
             // polyhedronDrawer
             // 
             polyhedronDrawer.BackColor = Color.White;
+            polyhedronDrawer.BorderStyle = BorderStyle.Fixed3D;
             polyhedronDrawer.Dock = DockStyle.Fill;
             polyhedronDrawer.Location = new Point(300, 0);
             polyhedronDrawer.Name = "polyhedronDrawer";
