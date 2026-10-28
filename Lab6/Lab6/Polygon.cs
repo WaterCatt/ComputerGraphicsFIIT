@@ -10,10 +10,5 @@ namespace Lab6
         {
             VertexIndices = vertexIndices;
         }
-
-        public Polygon Copy()
-        {
-            return new Polygon(new List<int>(VertexIndices));
-        }
     }
 }
