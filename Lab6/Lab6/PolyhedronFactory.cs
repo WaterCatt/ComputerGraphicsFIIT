@@ -106,8 +106,9 @@ namespace Lab6
 
         public static Polyhedron CreateTetrahedron()
         {
-            double a = 1.0 / System.Math.Sqrt(3.0);
+            double a = 1.0 / Math.Sqrt(3.0);
             var p = new Polyhedron();
+
             p.Vertices.Add(new Point3D(a, a, a));
             p.Vertices.Add(new Point3D(a, -a, -a));
             p.Vertices.Add(new Point3D(-a, a, -a));
