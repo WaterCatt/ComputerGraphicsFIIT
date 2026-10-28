@@ -63,7 +63,7 @@ namespace Lab6
                     Up = new Point3D(0, 0, 1)
                 };
                 view = isoCam.GetViewMatrix();
-                proj = MatrixOps.Identity();
+                proj = isoCam.GetProjectionMatrix();
             }
 
             double[,] transformMatrix = MatrixOps.Multiply(proj, view);
