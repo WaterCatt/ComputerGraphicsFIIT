@@ -78,7 +78,7 @@
             // iterBox
             // 
             iterBox.Location = new Point(140, 29);
-            iterBox.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
+            iterBox.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             iterBox.Name = "iterBox";
             iterBox.Size = new Size(120, 23);
             iterBox.TabIndex = 3;

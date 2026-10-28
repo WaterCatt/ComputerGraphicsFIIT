@@ -116,7 +116,6 @@ namespace lab5
         private void DrawBezierSegment(Graphics g, PointF p0, PointF p1,
                                        PointF p2, PointF p3, Pen pen)
         {
-            // B(t) = (1-t)^3*P0 + 3(1-t)^2*t*P1 + 3(1-t)*t^2*P2 + t^3*P3
             const int steps = 120;
             PointF prev = p0;
 
@@ -129,6 +128,7 @@ namespace lab5
             }
         }
 
+        // B(t) = (1-t)^3*P0 + 3(1-t)^2*t*P1 + 3(1-t)*t^2*P2 + t^3*P3
         private PointF BezierPoint(PointF p0, PointF p1, PointF p2, PointF p3, float t)
         {
             float u = 1 - t;
@@ -201,14 +201,16 @@ namespace lab5
 
                 if (draggingIndex > 0 && draggingIndex % 3 == 0 &&
                     draggingIndex - 1 >= 0 && draggingIndex + 1 < points.Count)
-                {
+                { 
+                    //соседс
                     PointF A = points[draggingIndex - 1];
                     PointF C = points[draggingIndex + 1];
 
                     float dx = C.X - A.X;
                     float dy = C.Y - A.Y;
                     float len2 = dx * dx + dy * dy;
-
+                    //Формула проекции точки на прямую
+                    //d = C − A;  t = (P − A)·d / (d·d);  proj = A + t·d
                     if (len2 > 0.0001f)
                     {
                         float t = ((newPos.X - A.X) * dx + (newPos.Y - A.Y) * dy) / len2;
