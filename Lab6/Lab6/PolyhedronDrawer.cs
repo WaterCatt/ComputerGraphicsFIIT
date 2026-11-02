@@ -108,8 +108,8 @@ namespace Lab6
 
             if (camera.Type == ProjectionType.Perspective)
             {
-                if (w < 0.05)
-                    w = 0.05;
+                if (w < 0.001)
+                    w = 0.001;
 
                 x /= w;
                 y /= w;
