@@ -35,7 +35,24 @@ namespace Lab8
             Point3D zAxis = Position - LookAt;
             zAxis.Normalize();
 
-            Point3D xAxis = Point3D.Cross(Up, zAxis);
+            Point3D up;
+            if (Type == ProjectionType.Perspective)
+            {
+                up = Up.Copy();
+                if (Math.Abs(Point3D.Dot(up, zAxis)) > 0.999)
+                {
+                    Point3D helper = Math.Abs(zAxis.Z) < 0.9 ? new Point3D(0, 0, 1) : new Point3D(1, 0, 0);
+                    Point3D right = Point3D.Cross(helper, zAxis);
+                    right.Normalize();
+                    up = Point3D.Cross(zAxis, right);
+                }
+            }
+            else
+            {
+                up = new Point3D(0, 0, 1);
+            }
+
+            Point3D xAxis = Point3D.Cross(up, zAxis);
             xAxis.Normalize();
 
             Point3D yAxis = Point3D.Cross(zAxis, xAxis);
@@ -69,12 +86,11 @@ namespace Lab8
                         {1/width, 0, 0, 0},
                         {0, 1/width, 0, 0},
                         {0, 0, -(zfar + znear)/(zfar - znear), -(2 * zfar * znear)/(zfar - znear)},
-                        {0, 0, -1, 0} 
+                        {0, 0, -1, 0}
                 };
             }
 
-            double dist = Math.Sqrt(Position.X * Position.X + Position.Y * Position.Y + Position.Z * Position.Z);
-            double k = 1.0 / (width * dist);
+            double k = 1.0 / width;
 
             return new double[,] {
                             {k, 0, 0, 0},

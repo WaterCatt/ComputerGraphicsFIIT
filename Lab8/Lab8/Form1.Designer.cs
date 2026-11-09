@@ -1,8 +1,4 @@
-﻿using Lab8;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Lab8
+﻿namespace Lab8
 {
     partial class Form1
     {
@@ -14,6 +10,7 @@ namespace Lab8
         private System.Windows.Forms.ComboBox cmbFigure;
         private System.Windows.Forms.ComboBox cmbProjection;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnResetCamera;
 
         private System.Windows.Forms.Label lblTranslation;
         private System.Windows.Forms.NumericUpDown numTx;
@@ -92,6 +89,7 @@ namespace Lab8
             cmbFigure = new ComboBox();
             cmbProjection = new ComboBox();
             btnReset = new Button();
+            btnResetCamera = new Button();
             lblTranslation = new Label();
             numTx = new NumericUpDown();
             numTy = new NumericUpDown();
@@ -173,8 +171,9 @@ namespace Lab8
             polyhedronDrawer.Dock = DockStyle.Fill;
             polyhedronDrawer.Location = new Point(300, 0);
             polyhedronDrawer.Name = "polyhedronDrawer";
-            polyhedronDrawer.Size = new Size(600, 600);
+            polyhedronDrawer.Size = new Size(1124, 852);
             polyhedronDrawer.TabIndex = 0;
+            polyhedronDrawer.TabStop = true;
             polyhedronDrawer.Paint += polyhedronDrawer_Paint;
             // 
             // panelControls
@@ -184,6 +183,7 @@ namespace Lab8
             panelControls.Controls.Add(cmbFigure);
             panelControls.Controls.Add(cmbProjection);
             panelControls.Controls.Add(btnReset);
+            panelControls.Controls.Add(btnResetCamera);
             panelControls.Controls.Add(lblTranslation);
             panelControls.Controls.Add(numTx);
             panelControls.Controls.Add(numTy);
@@ -238,7 +238,7 @@ namespace Lab8
             panelControls.Dock = DockStyle.Left;
             panelControls.Location = new Point(0, 0);
             panelControls.Name = "panelControls";
-            panelControls.Size = new Size(300, 600);
+            panelControls.Size = new Size(300, 852);
             panelControls.TabIndex = 1;
             // 
             // cmbFigure
@@ -263,9 +263,17 @@ namespace Lab8
             // 
             btnReset.Location = new Point(10, 50);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(274, 25);
+            btnReset.Size = new Size(134, 25);
             btnReset.TabIndex = 2;
             btnReset.Text = "Сброс";
+            // 
+            // btnResetCamera
+            // 
+            btnResetCamera.Location = new Point(150, 50);
+            btnResetCamera.Name = "btnResetCamera";
+            btnResetCamera.Size = new Size(134, 25);
+            btnResetCamera.TabIndex = 54;
+            btnResetCamera.Text = "Сброс камеры";
             // 
             // lblTranslation
             // 
@@ -742,11 +750,11 @@ namespace Lab8
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(900, 600);
+            ClientSize = new Size(1424, 852);
             Controls.Add(polyhedronDrawer);
             Controls.Add(panelControls);
             Name = "Form1";
-            Text = "Лабораторная работа №7";
+            Text = "Лабораторная работа №8";
             panelControls.ResumeLayout(false);
             panelControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numTx).EndInit();

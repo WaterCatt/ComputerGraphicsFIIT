@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace Lab8
         {
             InitializeComponent();
             SetupEvents();
+            cmbProjection.SelectedIndex = 0;
             LoadFigure();
         }
 
@@ -18,11 +20,20 @@ namespace Lab8
             cmbFigure.SelectedIndexChanged += (s, e) => LoadFigure();
             cmbProjection.SelectedIndexChanged += (s, e) =>
             {
-                polyhedronDrawer.Camera.Type = cmbProjection.SelectedIndex == 0 ? ProjectionType.Perspective : ProjectionType.Axonometric;
-                polyhedronDrawer.Invalidate();
+                polyhedronDrawer.ApplyProjectionType(cmbProjection.SelectedIndex == 0 ? ProjectionType.Perspective : ProjectionType.Axonometric);
             };
 
-            btnReset.Click += (s, e) => LoadFigure();
+            btnReset.Click += (s, e) =>
+            {
+                if (polyhedronDrawer.Polyhedron == null)
+                    return;
+
+                Point3D c = polyhedronDrawer.Polyhedron.GetCenter();
+                polyhedronDrawer.Polyhedron.Translate(-c.X, -c.Y, -c.Z);
+                polyhedronDrawer.RefreshPolyhedron();
+            };
+
+            btnResetCamera.Click += (s, e) => polyhedronDrawer.ResetCamera();
 
             btnTranslate.Click += (s, e) =>
             {
@@ -205,12 +216,10 @@ namespace Lab8
 
         private void polyhedronDrawer_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
