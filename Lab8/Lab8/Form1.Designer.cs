@@ -1,4 +1,8 @@
-﻿namespace Lab8
+﻿using Lab8;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Lab8
 {
     partial class Form1
     {
@@ -83,6 +87,7 @@
 
         private void InitializeComponent()
         {
+            polyhedronDrawer = new PolyhedronDrawer();
             panelControls = new Panel();
             cmbFigure = new ComboBox();
             cmbProjection = new ComboBox();
@@ -160,6 +165,17 @@
             ((System.ComponentModel.ISupportInitialize)numY1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSurfaceSegments).BeginInit();
             SuspendLayout();
+            // 
+            // polyhedronDrawer
+            // 
+            polyhedronDrawer.BackColor = Color.White;
+            polyhedronDrawer.BorderStyle = BorderStyle.Fixed3D;
+            polyhedronDrawer.Dock = DockStyle.Fill;
+            polyhedronDrawer.Location = new Point(300, 0);
+            polyhedronDrawer.Name = "polyhedronDrawer";
+            polyhedronDrawer.Size = new Size(600, 600);
+            polyhedronDrawer.TabIndex = 0;
+            polyhedronDrawer.Paint += polyhedronDrawer_Paint;
             // 
             // panelControls
             // 
@@ -727,10 +743,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 600);
+            Controls.Add(polyhedronDrawer);
             Controls.Add(panelControls);
             Name = "Form1";
             Text = "Лабораторная работа №7";
-            Load += Form1_Load;
             panelControls.ResumeLayout(false);
             panelControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numTx).EndInit();
