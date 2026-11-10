@@ -12,6 +12,7 @@ namespace Lab8
             InitializeComponent();
             SetupEvents();
             cmbProjection.SelectedIndex = 0;
+            cmbDisplayMode.SelectedIndex = 0;
             LoadFigure();
         }
 
@@ -21,6 +22,16 @@ namespace Lab8
             cmbProjection.SelectedIndexChanged += (s, e) =>
             {
                 polyhedronDrawer.ApplyProjectionType(cmbProjection.SelectedIndex == 0 ? ProjectionType.Perspective : ProjectionType.Axonometric);
+            };
+            cmbDisplayMode.SelectedIndexChanged += (s, e) =>
+            {
+                polyhedronDrawer.RenderMode = cmbDisplayMode.SelectedIndex switch
+                {
+                    1 => RenderMode.BackFaceCulling,
+                    2 => RenderMode.ZBuffer,
+                    _ => RenderMode.Standard
+                };
+                polyhedronDrawer.Invalidate();
             };
 
             btnReset.Click += (s, e) =>

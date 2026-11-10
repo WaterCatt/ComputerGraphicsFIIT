@@ -9,6 +9,7 @@
         private System.Windows.Forms.Panel panelControls;
         private System.Windows.Forms.ComboBox cmbFigure;
         private System.Windows.Forms.ComboBox cmbProjection;
+        private System.Windows.Forms.ComboBox cmbDisplayMode;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnResetCamera;
 
@@ -88,6 +89,7 @@
             panelControls = new Panel();
             cmbFigure = new ComboBox();
             cmbProjection = new ComboBox();
+            cmbDisplayMode = new ComboBox();
             btnReset = new Button();
             btnResetCamera = new Button();
             lblTranslation = new Label();
@@ -235,6 +237,7 @@
             panelControls.Controls.Add(lblFunction);
             panelControls.Controls.Add(cmbFunction);
             panelControls.Controls.Add(btnBuildSurface);
+            panelControls.Controls.Add(cmbDisplayMode);
             panelControls.Dock = DockStyle.Left;
             panelControls.Location = new Point(0, 0);
             panelControls.Name = "panelControls";
@@ -258,6 +261,14 @@
             cmbProjection.Size = new Size(130, 23);
             cmbProjection.TabIndex = 1;
             cmbProjection.Text = "Перспективная";
+            // cmbDisplayMode
+            //
+            cmbDisplayMode.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDisplayMode.Items.AddRange(new object[] { "Обычное", "Отсечение граней", "Z-буфер" });
+            cmbDisplayMode.Location = new Point(10, 45);
+            cmbDisplayMode.Name = "cmbDisplayMode";
+            cmbDisplayMode.Size = new Size(274, 23);
+            cmbDisplayMode.TabIndex = 2;
             // 
             // btnReset
             // 
@@ -755,6 +766,11 @@
             Controls.Add(panelControls);
             Name = "Form1";
             Text = "Лабораторная работа №8";
+            foreach (Control control in panelControls.Controls)
+            {
+                if (control != cmbFigure && control != cmbProjection && control != cmbDisplayMode)
+                    control.Top += 35;
+            }
             panelControls.ResumeLayout(false);
             panelControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numTx).EndInit();

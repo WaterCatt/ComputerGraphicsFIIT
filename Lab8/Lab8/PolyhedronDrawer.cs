@@ -6,10 +6,21 @@ using System.Windows.Forms;
 
 namespace Lab8
 {
+    public enum RenderMode
+    {
+        Standard,
+        BackFaceCulling,
+        ZBuffer
+    }
+
     public class PolyhedronDrawer : Panel
     {
         private Polyhedron polyhedron;
         private Camera camera;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public RenderMode RenderMode { get; set; } = RenderMode.Standard;
 
         private Point lastMousePos;
         private bool isDragging;
@@ -201,9 +212,12 @@ namespace Lab8
 
             DrawAxes(e.Graphics, transformMatrix);
 
+            var visibleEdges = RenderMode == RenderMode.BackFaceCulling
+                ? BackFaceCulling.GetVisibleEdges(polyhedron, camera)
+                : polyhedron.Edges;
             using (var pen = new Pen(Color.Black, 2))
             {
-                foreach (var edge in polyhedron.Edges)
+                foreach (var edge in visibleEdges)
                     if (TryProjectEdge(polyhedron.Vertices[edge.Item1], polyhedron.Vertices[edge.Item2], transformMatrix, out PointF p1, out PointF p2))
                         e.Graphics.DrawLine(pen, p1, p2);
             }
