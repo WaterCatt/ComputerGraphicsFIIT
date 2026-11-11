@@ -9,10 +9,6 @@ namespace Lab8
     {
         public static void Draw(Graphics graphics, Polyhedron polyhedron, Camera camera, int width, int height, bool severalObjects)
         {
-            if (width <= 0 || height <= 0)
-            {
-                return;
-            }
 
             double[] zBuffer = new double[width * height];
             int[] pixels = new int[width * height];
