@@ -31,6 +31,13 @@ namespace Lab8
                     2 => RenderMode.ZBuffer,
                     _ => RenderMode.Standard
                 };
+                checkSeveralObjects.Enabled = cmbDisplayMode.SelectedIndex == 2;
+                polyhedronDrawer.Invalidate();
+            };
+
+            checkSeveralObjects.CheckedChanged += (s, e) =>
+            {
+                polyhedronDrawer.ShowSeveralObjects = checkSeveralObjects.Checked;
                 polyhedronDrawer.Invalidate();
             };
 

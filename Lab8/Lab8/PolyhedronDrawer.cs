@@ -22,6 +22,10 @@ namespace Lab8
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RenderMode RenderMode { get; set; } = RenderMode.Standard;
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool ShowSeveralObjects { get; set; } = true;
+
         private Point lastMousePos;
         private bool isDragging;
 
@@ -119,7 +123,7 @@ namespace Lab8
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
-            if (!isDragging) 
+            if (!isDragging)
                 return;
 
             int dx = e.X - lastMousePos.X;
@@ -212,6 +216,12 @@ namespace Lab8
 
             DrawAxes(e.Graphics, transformMatrix);
 
+            if (RenderMode == RenderMode.ZBuffer && polyhedron.Faces.Count > 0)
+            {
+                ZBufferRenderer.Draw(e.Graphics, polyhedron, camera, Width, Height, ShowSeveralObjects);
+                return;
+            }
+
             var visibleEdges = RenderMode == RenderMode.BackFaceCulling
                 ? BackFaceCulling.GetVisibleEdges(polyhedron, camera)
                 : polyhedron.Edges;
@@ -272,9 +282,9 @@ namespace Lab8
                     bw = near;
                 }
 
-                ax /= aw; 
+                ax /= aw;
                 ay /= aw;
-                bx /= bw; 
+                bx /= bw;
                 by /= bw;
             }
 
