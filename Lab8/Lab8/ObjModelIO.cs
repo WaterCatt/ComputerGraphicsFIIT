@@ -12,7 +12,6 @@ namespace Lab8
             var polyhedron = new Polyhedron();
             var lines = File.ReadAllLines(path);
             var edgeList = new HashSet<Tuple<int, int>>();
-            int vertexOffset = 0;
 
             foreach (var raw in lines)
             {
@@ -67,7 +66,6 @@ namespace Lab8
                             break;
                         }
                 }
-                vertexOffset = 0;
             }
 
             polyhedron.BuildEdges();

@@ -81,22 +81,28 @@ namespace Lab8
 
             if (Type == ProjectionType.Perspective)
             {
-                double znear = 0.1, zfar = 1000;
+                double znear = Near;
+                double zfar = Far;
+
+                if (znear <= 0) 
+                    znear = 0.1;
+                if (zfar <= znear) 
+                    zfar = znear + 1.0;
+
                 return new double[,] {
-                        {1/width, 0, 0, 0},
-                        {0, 1/width, 0, 0},
-                        {0, 0, -(zfar + znear)/(zfar - znear), -(2 * zfar * znear)/(zfar - znear)},
-                        {0, 0, -1, 0}
+                    {1/width, 0, 0, 0},
+                    {0, 1/width, 0, 0},
+                    {0, 0, -(zfar + znear)/(zfar - znear), -(2 * zfar * znear)/(zfar - znear)},
+                    {0, 0, -1, 0}
                 };
             }
 
             double k = 1.0 / width;
-
             return new double[,] {
-                            {k, 0, 0, 0},
-                            {0, k, 0, 0},
-                            {0, 0, 1, 0},
-                            {0, 0, 0, 1}
+                {k, 0, 0, 0},
+                {0, k, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
             };
         }
     }
