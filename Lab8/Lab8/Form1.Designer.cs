@@ -261,8 +261,9 @@
             cmbProjection.Size = new Size(130, 23);
             cmbProjection.TabIndex = 1;
             cmbProjection.Text = "Перспективная";
+            // 
             // cmbDisplayMode
-            //
+            // 
             cmbDisplayMode.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDisplayMode.Items.AddRange(new object[] { "Обычное", "Отсечение граней", "Z-буфер" });
             cmbDisplayMode.Location = new Point(10, 45);
@@ -272,489 +273,489 @@
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(10, 50);
+            btnReset.Location = new Point(10, 85);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(134, 25);
-            btnReset.TabIndex = 2;
+            btnReset.TabIndex = 3;
             btnReset.Text = "Сброс";
             // 
             // btnResetCamera
             // 
-            btnResetCamera.Location = new Point(150, 50);
+            btnResetCamera.Location = new Point(150, 85);
             btnResetCamera.Name = "btnResetCamera";
             btnResetCamera.Size = new Size(134, 25);
-            btnResetCamera.TabIndex = 54;
+            btnResetCamera.TabIndex = 4;
             btnResetCamera.Text = "Сброс камеры";
             // 
             // lblTranslation
             // 
-            lblTranslation.Location = new Point(10, 90);
+            lblTranslation.Location = new Point(10, 125);
             lblTranslation.Name = "lblTranslation";
             lblTranslation.Size = new Size(78, 23);
-            lblTranslation.TabIndex = 3;
+            lblTranslation.TabIndex = 5;
             lblTranslation.Text = "Смещение:";
             // 
             // numTx
             // 
             numTx.DecimalPlaces = 1;
             numTx.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numTx.Location = new Point(94, 90);
+            numTx.Location = new Point(94, 125);
             numTx.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numTx.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numTx.Name = "numTx";
             numTx.Size = new Size(50, 23);
-            numTx.TabIndex = 4;
+            numTx.TabIndex = 6;
             // 
             // numTy
             // 
             numTy.DecimalPlaces = 1;
             numTy.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numTy.Location = new Point(149, 90);
+            numTy.Location = new Point(149, 125);
             numTy.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numTy.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numTy.Name = "numTy";
             numTy.Size = new Size(50, 23);
-            numTy.TabIndex = 5;
+            numTy.TabIndex = 7;
             // 
             // numTz
             // 
             numTz.DecimalPlaces = 1;
             numTz.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numTz.Location = new Point(204, 90);
+            numTz.Location = new Point(204, 125);
             numTz.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numTz.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numTz.Name = "numTz";
             numTz.Size = new Size(50, 23);
-            numTz.TabIndex = 6;
+            numTz.TabIndex = 8;
             // 
             // btnTranslate
             // 
-            btnTranslate.Location = new Point(259, 88);
+            btnTranslate.Location = new Point(259, 123);
             btnTranslate.Name = "btnTranslate";
             btnTranslate.Size = new Size(25, 25);
-            btnTranslate.TabIndex = 7;
+            btnTranslate.TabIndex = 9;
             btnTranslate.Text = ">";
             // 
             // lblScale
             // 
-            lblScale.Location = new Point(10, 125);
+            lblScale.Location = new Point(10, 160);
             lblScale.Name = "lblScale";
             lblScale.Size = new Size(65, 23);
-            lblScale.TabIndex = 8;
+            lblScale.TabIndex = 10;
             lblScale.Text = "Масштаб:";
             // 
             // numSx
             // 
             numSx.DecimalPlaces = 1;
             numSx.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numSx.Location = new Point(94, 125);
+            numSx.Location = new Point(94, 160);
             numSx.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numSx.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numSx.Name = "numSx";
             numSx.Size = new Size(50, 23);
-            numSx.TabIndex = 9;
+            numSx.TabIndex = 11;
             numSx.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numSy
             // 
             numSy.DecimalPlaces = 1;
             numSy.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numSy.Location = new Point(149, 125);
+            numSy.Location = new Point(149, 160);
             numSy.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numSy.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numSy.Name = "numSy";
             numSy.Size = new Size(50, 23);
-            numSy.TabIndex = 10;
+            numSy.TabIndex = 12;
             numSy.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numSz
             // 
             numSz.DecimalPlaces = 1;
             numSz.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numSz.Location = new Point(204, 125);
+            numSz.Location = new Point(204, 160);
             numSz.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numSz.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numSz.Name = "numSz";
             numSz.Size = new Size(50, 23);
-            numSz.TabIndex = 11;
+            numSz.TabIndex = 13;
             numSz.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnScale
             // 
-            btnScale.Location = new Point(259, 123);
+            btnScale.Location = new Point(259, 158);
             btnScale.Name = "btnScale";
             btnScale.Size = new Size(25, 25);
-            btnScale.TabIndex = 12;
+            btnScale.TabIndex = 14;
             btnScale.Text = ">";
             // 
             // lblRotateAxis
             // 
-            lblRotateAxis.Location = new Point(10, 160);
+            lblRotateAxis.Location = new Point(10, 195);
             lblRotateAxis.Name = "lblRotateAxis";
             lblRotateAxis.Size = new Size(78, 23);
-            lblRotateAxis.TabIndex = 13;
+            lblRotateAxis.TabIndex = 15;
             lblRotateAxis.Text = "Вокруг оси:";
             // 
             // cmbAxis
             // 
             cmbAxis.Items.AddRange(new object[] { "X", "Y", "Z" });
-            cmbAxis.Location = new Point(94, 160);
+            cmbAxis.Location = new Point(94, 195);
             cmbAxis.Name = "cmbAxis";
             cmbAxis.Size = new Size(50, 23);
-            cmbAxis.TabIndex = 14;
+            cmbAxis.TabIndex = 16;
             cmbAxis.Text = "Z";
             // 
             // numAxisAngle
             // 
             numAxisAngle.DecimalPlaces = 1;
             numAxisAngle.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numAxisAngle.Location = new Point(149, 160);
+            numAxisAngle.Location = new Point(149, 195);
             numAxisAngle.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
             numAxisAngle.Minimum = new decimal(new int[] { 360, 0, 0, int.MinValue });
             numAxisAngle.Name = "numAxisAngle";
             numAxisAngle.Size = new Size(50, 23);
-            numAxisAngle.TabIndex = 15;
+            numAxisAngle.TabIndex = 17;
             numAxisAngle.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // btnRotateAxis
             // 
-            btnRotateAxis.Location = new Point(204, 158);
+            btnRotateAxis.Location = new Point(204, 193);
             btnRotateAxis.Name = "btnRotateAxis";
             btnRotateAxis.Size = new Size(80, 25);
-            btnRotateAxis.TabIndex = 16;
+            btnRotateAxis.TabIndex = 18;
             btnRotateAxis.Text = ">";
             // 
             // lblReflectCoord
             // 
-            lblReflectCoord.Location = new Point(10, 195);
+            lblReflectCoord.Location = new Point(10, 230);
             lblReflectCoord.Name = "lblReflectCoord";
             lblReflectCoord.Size = new Size(78, 23);
-            lblReflectCoord.TabIndex = 17;
+            lblReflectCoord.TabIndex = 19;
             lblReflectCoord.Text = "Отражение:";
             // 
             // cmbReflectCoord
             // 
             cmbReflectCoord.Items.AddRange(new object[] { "XY", "XZ", "YZ" });
-            cmbReflectCoord.Location = new Point(94, 195);
+            cmbReflectCoord.Location = new Point(94, 230);
             cmbReflectCoord.Name = "cmbReflectCoord";
             cmbReflectCoord.Size = new Size(105, 23);
-            cmbReflectCoord.TabIndex = 18;
+            cmbReflectCoord.TabIndex = 20;
             cmbReflectCoord.Text = "XY";
             // 
             // btnReflectCoord
             // 
-            btnReflectCoord.Location = new Point(204, 193);
+            btnReflectCoord.Location = new Point(204, 228);
             btnReflectCoord.Name = "btnReflectCoord";
             btnReflectCoord.Size = new Size(80, 25);
-            btnReflectCoord.TabIndex = 19;
+            btnReflectCoord.TabIndex = 21;
             btnReflectCoord.Text = ">";
             // 
             // lblRotateLine
             // 
-            lblRotateLine.Location = new Point(10, 236);
+            lblRotateLine.Location = new Point(10, 271);
             lblRotateLine.Name = "lblRotateLine";
             lblRotateLine.Size = new Size(159, 23);
-            lblRotateLine.TabIndex = 20;
+            lblRotateLine.TabIndex = 22;
             lblRotateLine.Text = "Вращение вокруг прямой:";
             // 
             // lblP1
             // 
             lblP1.AutoSize = true;
-            lblP1.Location = new Point(10, 265);
+            lblP1.Location = new Point(10, 300);
             lblP1.Name = "lblP1";
             lblP1.Size = new Size(23, 15);
-            lblP1.TabIndex = 21;
+            lblP1.TabIndex = 23;
             lblP1.Text = "P1:";
             // 
             // numLx1
             // 
             numLx1.DecimalPlaces = 1;
-            numLx1.Location = new Point(40, 262);
+            numLx1.Location = new Point(40, 297);
             numLx1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLx1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLx1.Name = "numLx1";
             numLx1.Size = new Size(50, 23);
-            numLx1.TabIndex = 22;
+            numLx1.TabIndex = 24;
             // 
             // numLy1
             // 
             numLy1.DecimalPlaces = 1;
-            numLy1.Location = new Point(95, 262);
+            numLy1.Location = new Point(95, 297);
             numLy1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLy1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLy1.Name = "numLy1";
             numLy1.Size = new Size(50, 23);
-            numLy1.TabIndex = 23;
+            numLy1.TabIndex = 25;
             // 
             // numLz1
             // 
             numLz1.DecimalPlaces = 1;
-            numLz1.Location = new Point(150, 262);
+            numLz1.Location = new Point(150, 297);
             numLz1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLz1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLz1.Name = "numLz1";
             numLz1.Size = new Size(50, 23);
-            numLz1.TabIndex = 24;
+            numLz1.TabIndex = 26;
             // 
             // lblP2
             // 
             lblP2.AutoSize = true;
-            lblP2.Location = new Point(10, 294);
+            lblP2.Location = new Point(10, 329);
             lblP2.Name = "lblP2";
             lblP2.Size = new Size(23, 15);
-            lblP2.TabIndex = 25;
+            lblP2.TabIndex = 27;
             lblP2.Text = "P2:";
             // 
             // numLx2
             // 
             numLx2.DecimalPlaces = 1;
-            numLx2.Location = new Point(40, 291);
+            numLx2.Location = new Point(40, 326);
             numLx2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLx2.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLx2.Name = "numLx2";
             numLx2.Size = new Size(50, 23);
-            numLx2.TabIndex = 26;
+            numLx2.TabIndex = 28;
             numLx2.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numLy2
             // 
             numLy2.DecimalPlaces = 1;
-            numLy2.Location = new Point(95, 291);
+            numLy2.Location = new Point(95, 326);
             numLy2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLy2.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLy2.Name = "numLy2";
             numLy2.Size = new Size(50, 23);
-            numLy2.TabIndex = 27;
+            numLy2.TabIndex = 29;
             // 
             // numLz2
             // 
             numLz2.DecimalPlaces = 1;
-            numLz2.Location = new Point(150, 291);
+            numLz2.Location = new Point(150, 326);
             numLz2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLz2.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLz2.Name = "numLz2";
             numLz2.Size = new Size(50, 23);
-            numLz2.TabIndex = 28;
+            numLz2.TabIndex = 30;
             // 
             // lblAng
             // 
             lblAng.AutoSize = true;
-            lblAng.Location = new Point(10, 326);
+            lblAng.Location = new Point(10, 361);
             lblAng.Name = "lblAng";
             lblAng.Size = new Size(36, 15);
-            lblAng.TabIndex = 29;
+            lblAng.TabIndex = 31;
             lblAng.Text = "Угол:";
             // 
             // numLineAngle
             // 
             numLineAngle.DecimalPlaces = 1;
-            numLineAngle.Location = new Point(60, 323);
+            numLineAngle.Location = new Point(60, 358);
             numLineAngle.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
             numLineAngle.Minimum = new decimal(new int[] { 360, 0, 0, int.MinValue });
             numLineAngle.Name = "numLineAngle";
             numLineAngle.Size = new Size(50, 23);
-            numLineAngle.TabIndex = 30;
+            numLineAngle.TabIndex = 32;
             numLineAngle.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // btnRotateLine
             // 
-            btnRotateLine.Location = new Point(120, 321);
+            btnRotateLine.Location = new Point(120, 356);
             btnRotateLine.Name = "btnRotateLine";
             btnRotateLine.Size = new Size(75, 25);
-            btnRotateLine.TabIndex = 31;
+            btnRotateLine.TabIndex = 33;
             btnRotateLine.Text = ">";
             // 
             // btnLoadObj
             // 
-            btnLoadObj.Location = new Point(10, 360);
+            btnLoadObj.Location = new Point(10, 395);
             btnLoadObj.Name = "btnLoadObj";
             btnLoadObj.Size = new Size(130, 25);
-            btnLoadObj.TabIndex = 32;
+            btnLoadObj.TabIndex = 34;
             btnLoadObj.Text = "Загрузить OBJ";
             // 
             // btnSaveObj
             // 
-            btnSaveObj.Location = new Point(150, 360);
+            btnSaveObj.Location = new Point(150, 395);
             btnSaveObj.Name = "btnSaveObj";
             btnSaveObj.Size = new Size(130, 25);
-            btnSaveObj.TabIndex = 33;
+            btnSaveObj.TabIndex = 35;
             btnSaveObj.Text = "Сохранить OBJ";
             // 
             // lblProfile
             // 
-            lblProfile.Location = new Point(10, 395);
+            lblProfile.Location = new Point(10, 430);
             lblProfile.Name = "lblProfile";
             lblProfile.Size = new Size(274, 18);
-            lblProfile.TabIndex = 34;
+            lblProfile.TabIndex = 36;
             lblProfile.Text = "Образующая:";
             // 
             // txtProfile
             // 
-            txtProfile.Location = new Point(10, 415);
+            txtProfile.Location = new Point(10, 450);
             txtProfile.Name = "txtProfile";
             txtProfile.Size = new Size(274, 23);
-            txtProfile.TabIndex = 35;
+            txtProfile.TabIndex = 37;
             txtProfile.Text = "1,0,0; 1,0,1; 0,0,1";
             // 
             // lblRevolutionAxis
             // 
-            lblRevolutionAxis.Location = new Point(10, 445);
+            lblRevolutionAxis.Location = new Point(10, 480);
             lblRevolutionAxis.Name = "lblRevolutionAxis";
             lblRevolutionAxis.Size = new Size(60, 23);
-            lblRevolutionAxis.TabIndex = 36;
+            lblRevolutionAxis.TabIndex = 38;
             lblRevolutionAxis.Text = "Ось:";
             // 
             // cmbRevolutionAxis
             // 
             cmbRevolutionAxis.Items.AddRange(new object[] { "X", "Y", "Z" });
-            cmbRevolutionAxis.Location = new Point(70, 443);
+            cmbRevolutionAxis.Location = new Point(70, 478);
             cmbRevolutionAxis.Name = "cmbRevolutionAxis";
             cmbRevolutionAxis.Size = new Size(50, 23);
-            cmbRevolutionAxis.TabIndex = 37;
+            cmbRevolutionAxis.TabIndex = 39;
             cmbRevolutionAxis.Text = "X";
             // 
             // lblSegments
             // 
-            lblSegments.Location = new Point(130, 445);
+            lblSegments.Location = new Point(130, 480);
             lblSegments.Name = "lblSegments";
             lblSegments.Size = new Size(60, 23);
-            lblSegments.TabIndex = 38;
+            lblSegments.TabIndex = 40;
             lblSegments.Text = "Разб.:";
             // 
             // numSegments
             // 
-            numSegments.Location = new Point(190, 443);
+            numSegments.Location = new Point(190, 478);
             numSegments.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             numSegments.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             numSegments.Name = "numSegments";
             numSegments.Size = new Size(50, 23);
-            numSegments.TabIndex = 39;
+            numSegments.TabIndex = 41;
             numSegments.Value = new decimal(new int[] { 16, 0, 0, 0 });
             // 
             // btnBuildRevolution
             // 
-            btnBuildRevolution.Location = new Point(244, 441);
+            btnBuildRevolution.Location = new Point(244, 476);
             btnBuildRevolution.Name = "btnBuildRevolution";
             btnBuildRevolution.Size = new Size(40, 25);
-            btnBuildRevolution.TabIndex = 40;
+            btnBuildRevolution.TabIndex = 42;
             btnBuildRevolution.Text = ">";
             // 
             // lblX0
             // 
-            lblX0.Location = new Point(10, 480);
+            lblX0.Location = new Point(10, 515);
             lblX0.Name = "lblX0";
             lblX0.Size = new Size(30, 23);
-            lblX0.TabIndex = 41;
+            lblX0.TabIndex = 43;
             lblX0.Text = "X0:";
             // 
             // numX0
             // 
             numX0.DecimalPlaces = 1;
-            numX0.Location = new Point(40, 478);
+            numX0.Location = new Point(40, 513);
             numX0.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numX0.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numX0.Name = "numX0";
             numX0.Size = new Size(50, 23);
-            numX0.TabIndex = 42;
+            numX0.TabIndex = 44;
             numX0.Value = new decimal(new int[] { 2, 0, 0, int.MinValue });
             // 
             // lblX1
             // 
-            lblX1.Location = new Point(95, 480);
+            lblX1.Location = new Point(95, 515);
             lblX1.Name = "lblX1";
             lblX1.Size = new Size(30, 23);
-            lblX1.TabIndex = 43;
+            lblX1.TabIndex = 45;
             lblX1.Text = "X1:";
             // 
             // numX1
             // 
             numX1.DecimalPlaces = 1;
-            numX1.Location = new Point(125, 478);
+            numX1.Location = new Point(125, 513);
             numX1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numX1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numX1.Name = "numX1";
             numX1.Size = new Size(50, 23);
-            numX1.TabIndex = 44;
+            numX1.TabIndex = 46;
             numX1.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // lblY0
             // 
-            lblY0.Location = new Point(10, 510);
+            lblY0.Location = new Point(10, 545);
             lblY0.Name = "lblY0";
             lblY0.Size = new Size(30, 23);
-            lblY0.TabIndex = 45;
+            lblY0.TabIndex = 47;
             lblY0.Text = "Y0:";
             // 
             // numY0
             // 
             numY0.DecimalPlaces = 1;
-            numY0.Location = new Point(40, 508);
+            numY0.Location = new Point(40, 543);
             numY0.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numY0.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numY0.Name = "numY0";
             numY0.Size = new Size(50, 23);
-            numY0.TabIndex = 46;
+            numY0.TabIndex = 48;
             numY0.Value = new decimal(new int[] { 2, 0, 0, int.MinValue });
             // 
             // lblY1
             // 
-            lblY1.Location = new Point(95, 510);
+            lblY1.Location = new Point(95, 545);
             lblY1.Name = "lblY1";
             lblY1.Size = new Size(30, 23);
-            lblY1.TabIndex = 47;
+            lblY1.TabIndex = 49;
             lblY1.Text = "Y1:";
             // 
             // numY1
             // 
             numY1.DecimalPlaces = 1;
-            numY1.Location = new Point(125, 508);
+            numY1.Location = new Point(125, 543);
             numY1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numY1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numY1.Name = "numY1";
             numY1.Size = new Size(50, 23);
-            numY1.TabIndex = 48;
+            numY1.TabIndex = 50;
             numY1.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // lblSurfaceSegments
             // 
-            lblSurfaceSegments.Location = new Point(10, 540);
+            lblSurfaceSegments.Location = new Point(10, 575);
             lblSurfaceSegments.Name = "lblSurfaceSegments";
             lblSurfaceSegments.Size = new Size(70, 23);
-            lblSurfaceSegments.TabIndex = 49;
+            lblSurfaceSegments.TabIndex = 51;
             lblSurfaceSegments.Text = "Разб. N:";
             // 
             // numSurfaceSegments
             // 
-            numSurfaceSegments.Location = new Point(80, 538);
+            numSurfaceSegments.Location = new Point(80, 573);
             numSurfaceSegments.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             numSurfaceSegments.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numSurfaceSegments.Name = "numSurfaceSegments";
             numSurfaceSegments.Size = new Size(50, 23);
-            numSurfaceSegments.TabIndex = 50;
+            numSurfaceSegments.TabIndex = 52;
             numSurfaceSegments.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // lblFunction
             // 
-            lblFunction.Location = new Point(140, 540);
+            lblFunction.Location = new Point(140, 575);
             lblFunction.Name = "lblFunction";
             lblFunction.Size = new Size(40, 23);
-            lblFunction.TabIndex = 51;
+            lblFunction.TabIndex = 53;
             lblFunction.Text = "f(x,y):";
             // 
             // cmbFunction
             // 
             cmbFunction.Items.AddRange(new object[] { "sin(sqrt(x^2 + y^2))", "x^2 - y^2", "cos(x) * sin(y)", "sin(x) * cos(y) * x", "exp(-(x^2 + y^2))" });
-            cmbFunction.Location = new Point(180, 538);
+            cmbFunction.Location = new Point(180, 573);
             cmbFunction.Name = "cmbFunction";
             cmbFunction.Size = new Size(104, 23);
-            cmbFunction.TabIndex = 52;
+            cmbFunction.TabIndex = 54;
             // 
             // btnBuildSurface
             // 
-            btnBuildSurface.Location = new Point(10, 568);
+            btnBuildSurface.Location = new Point(10, 603);
             btnBuildSurface.Name = "btnBuildSurface";
             btnBuildSurface.Size = new Size(274, 25);
-            btnBuildSurface.TabIndex = 53;
+            btnBuildSurface.TabIndex = 55;
             btnBuildSurface.Text = "Построить поверхность";
             // 
             // Form1
@@ -766,11 +767,6 @@
             Controls.Add(panelControls);
             Name = "Form1";
             Text = "Лабораторная работа №8";
-            foreach (Control control in panelControls.Controls)
-            {
-                if (control != cmbFigure && control != cmbProjection && control != cmbDisplayMode)
-                    control.Top += 35;
-            }
             panelControls.ResumeLayout(false);
             panelControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numTx).EndInit();
