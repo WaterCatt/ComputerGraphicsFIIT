@@ -63,8 +63,11 @@ namespace Lab8
 
         public void ResetCamera()
         {
+            //расстояние от камеры до цели 
             perspRadius = Math.Sqrt(2 * 2 + 2 * 2 + 2 * 2);
+            //угол над горизонтом, из z = r * sin(pitch)
             perspPitch = Math.Asin(2.0 / perspRadius);
+            //угол поворота вокруг вертикальной оси
             perspYaw = Math.Atan2(2.0, 2.0);
 
             ApplyOrbit();
@@ -99,6 +102,7 @@ namespace Lab8
                 target.X + cp * cy * perspRadius,
                 target.Y + cp * sy * perspRadius,
                 target.Z + sp * perspRadius);
+            //единичный вектор dir = (Position − target) / radius = (cp * cy, cp * sy, sp), берём производную по pitch:
             camera.Up = new Point3D(-sp * cy, -sp * sy, cp);
         }
 
