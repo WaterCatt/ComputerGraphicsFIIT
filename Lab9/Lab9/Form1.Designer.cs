@@ -78,6 +78,12 @@
         private System.Windows.Forms.NumericUpDown numLy;
         private System.Windows.Forms.NumericUpDown numLz;
         private System.Windows.Forms.Button btnApplyLight;
+
+        private System.Windows.Forms.NumericUpDown numLdx;
+        private System.Windows.Forms.NumericUpDown numLdy;
+        private System.Windows.Forms.NumericUpDown numLdz;
+        private System.Windows.Forms.Button btnLightTranslate;
+
         private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.Button btnColor;
         private System.Windows.Forms.Panel pnlColor;
@@ -99,6 +105,8 @@
         {
             polyhedronDrawer = new PolyhedronDrawer();
             panelControls = new Panel();
+            label2 = new Label();
+            label1 = new Label();
             cmbFigure = new ComboBox();
             cmbProjection = new ComboBox();
             cmbDisplayMode = new ComboBox();
@@ -161,6 +169,10 @@
             numLy = new NumericUpDown();
             numLz = new NumericUpDown();
             btnApplyLight = new Button();
+            numLdx = new NumericUpDown();
+            numLdy = new NumericUpDown();
+            numLdz = new NumericUpDown();
+            btnLightTranslate = new Button();
             lblColor = new Label();
             btnColor = new Button();
             pnlColor = new Panel();
@@ -190,6 +202,9 @@
             ((System.ComponentModel.ISupportInitialize)numLx).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numLy).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numLz).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numLdx).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numLdy).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numLdz).BeginInit();
             SuspendLayout();
             // 
             // polyhedronDrawer
@@ -208,6 +223,8 @@
             // 
             panelControls.AutoScroll = true;
             panelControls.BackColor = SystemColors.Control;
+            panelControls.Controls.Add(label2);
+            panelControls.Controls.Add(label1);
             panelControls.Controls.Add(cmbFigure);
             panelControls.Controls.Add(cmbProjection);
             panelControls.Controls.Add(cmbDisplayMode);
@@ -270,6 +287,10 @@
             panelControls.Controls.Add(numLy);
             panelControls.Controls.Add(numLz);
             panelControls.Controls.Add(btnApplyLight);
+            panelControls.Controls.Add(numLdx);
+            panelControls.Controls.Add(numLdy);
+            panelControls.Controls.Add(numLdz);
+            panelControls.Controls.Add(btnLightTranslate);
             panelControls.Controls.Add(lblColor);
             panelControls.Controls.Add(btnColor);
             panelControls.Controls.Add(pnlColor);
@@ -280,6 +301,22 @@
             panelControls.Name = "panelControls";
             panelControls.Size = new Size(300, 852);
             panelControls.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(10, 724);
+            label2.Name = "label2";
+            label2.Size = new Size(78, 23);
+            label2.TabIndex = 72;
+            label2.Text = "Смещение:";
+            // 
+            // label1
+            // 
+            label1.Location = new Point(10, 692);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 23);
+            label1.TabIndex = 71;
+            label1.Text = "Координата:";
             // 
             // cmbFigure
             // 
@@ -315,7 +352,7 @@
             checkSeveralObjects.CheckState = CheckState.Checked;
             checkSeveralObjects.Location = new Point(10, 75);
             checkSeveralObjects.Name = "checkSeveralObjects";
-            checkSeveralObjects.Size = new Size(148, 19);
+            checkSeveralObjects.Size = new Size(140, 19);
             checkSeveralObjects.TabIndex = 3;
             checkSeveralObjects.Text = "Несколько объектов";
             checkSeveralObjects.UseVisualStyleBackColor = true;
@@ -811,14 +848,15 @@
             // 
             lblLight.Location = new Point(10, 658);
             lblLight.Name = "lblLight";
-            lblLight.Size = new Size(44, 23);
+            lblLight.Size = new Size(110, 23);
             lblLight.TabIndex = 57;
-            lblLight.Text = "Свет:";
+            lblLight.Text = "Источник света:";
+            lblLight.Click += lblLight_Click;
             // 
             // numLx
             // 
             numLx.DecimalPlaces = 1;
-            numLx.Location = new Point(60, 656);
+            numLx.Location = new Point(94, 690);
             numLx.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLx.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLx.Name = "numLx";
@@ -829,7 +867,7 @@
             // numLy
             // 
             numLy.DecimalPlaces = 1;
-            numLy.Location = new Point(115, 656);
+            numLy.Location = new Point(149, 690);
             numLy.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLy.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLy.Name = "numLy";
@@ -840,7 +878,7 @@
             // numLz
             // 
             numLz.DecimalPlaces = 1;
-            numLz.Location = new Point(170, 656);
+            numLz.Location = new Point(204, 690);
             numLz.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numLz.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numLz.Name = "numLz";
@@ -850,51 +888,92 @@
             // 
             // btnApplyLight
             // 
-            btnApplyLight.Location = new Point(225, 654);
+            btnApplyLight.Location = new Point(259, 688);
             btnApplyLight.Name = "btnApplyLight";
             btnApplyLight.Size = new Size(25, 25);
             btnApplyLight.TabIndex = 61;
             btnApplyLight.Text = ">";
             // 
+            // numLdx
+            // 
+            numLdx.DecimalPlaces = 1;
+            numLdx.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numLdx.Location = new Point(94, 724);
+            numLdx.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numLdx.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            numLdx.Name = "numLdx";
+            numLdx.Size = new Size(50, 23);
+            numLdx.TabIndex = 62;
+            // 
+            // numLdy
+            // 
+            numLdy.DecimalPlaces = 1;
+            numLdy.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numLdy.Location = new Point(149, 724);
+            numLdy.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numLdy.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            numLdy.Name = "numLdy";
+            numLdy.Size = new Size(50, 23);
+            numLdy.TabIndex = 63;
+            // 
+            // numLdz
+            // 
+            numLdz.DecimalPlaces = 1;
+            numLdz.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numLdz.Location = new Point(204, 724);
+            numLdz.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numLdz.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            numLdz.Name = "numLdz";
+            numLdz.Size = new Size(50, 23);
+            numLdz.TabIndex = 64;
+            // 
+            // btnLightTranslate
+            // 
+            btnLightTranslate.Location = new Point(259, 722);
+            btnLightTranslate.Name = "btnLightTranslate";
+            btnLightTranslate.Size = new Size(25, 25);
+            btnLightTranslate.TabIndex = 65;
+            btnLightTranslate.Text = ">";
+            // 
             // lblColor
             // 
-            lblColor.Location = new Point(10, 688);
+            lblColor.Location = new Point(10, 760);
             lblColor.Name = "lblColor";
             lblColor.Size = new Size(44, 23);
-            lblColor.TabIndex = 62;
+            lblColor.TabIndex = 66;
             lblColor.Text = "Цвет:";
             // 
             // btnColor
             // 
-            btnColor.Location = new Point(60, 686);
+            btnColor.Location = new Point(60, 758);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(80, 25);
-            btnColor.TabIndex = 63;
+            btnColor.TabIndex = 67;
             btnColor.Text = "Выбрать";
             // 
             // pnlColor
             // 
-            pnlColor.BackColor = Color.FromArgb(60, 120, 200);
+            pnlColor.BackColor = Color.LavenderBlush;
             pnlColor.BorderStyle = BorderStyle.FixedSingle;
-            pnlColor.Location = new Point(145, 686);
+            pnlColor.Location = new Point(145, 758);
             pnlColor.Name = "pnlColor";
             pnlColor.Size = new Size(40, 25);
-            pnlColor.TabIndex = 64;
+            pnlColor.TabIndex = 68;
             // 
             // btnTexture
             // 
-            btnTexture.Location = new Point(10, 718);
+            btnTexture.Location = new Point(10, 790);
             btnTexture.Name = "btnTexture";
             btnTexture.Size = new Size(130, 25);
-            btnTexture.TabIndex = 65;
+            btnTexture.TabIndex = 69;
             btnTexture.Text = "Загрузить текстуру";
             // 
             // btnResetTexture
             // 
-            btnResetTexture.Location = new Point(150, 718);
+            btnResetTexture.Location = new Point(150, 790);
             btnResetTexture.Name = "btnResetTexture";
             btnResetTexture.Size = new Size(130, 25);
-            btnResetTexture.TabIndex = 66;
+            btnResetTexture.TabIndex = 70;
             btnResetTexture.Text = "Сброс текстуры";
             // 
             // Form1
@@ -931,9 +1010,15 @@
             ((System.ComponentModel.ISupportInitialize)numLx).EndInit();
             ((System.ComponentModel.ISupportInitialize)numLy).EndInit();
             ((System.ComponentModel.ISupportInitialize)numLz).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numLdx).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numLdy).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numLdz).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Label label2;
+        private Label label1;
     }
 }

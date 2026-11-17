@@ -21,11 +21,6 @@ namespace Lab9
         public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h) { }
     }
 
-    public static class PhongRenderer
-    {
-        public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h) { }
-    }
-
     public static class TextureRenderer
     {
         public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h, Bitmap texture) { }
@@ -269,6 +264,7 @@ namespace Lab9
 
             if (RenderMode == RenderMode.Phong)
             {
+                DrawAxes(e.Graphics, transformMatrix);
                 PhongRenderer.Draw(e.Graphics, polyhedron, camera, Width, Height);
                 return;
             }
@@ -290,7 +286,7 @@ namespace Lab9
             }
         }
 
-        private void DrawAxes(Graphics g, double[,] transformMatrix)
+        public void DrawAxes(Graphics g, double[,] transformMatrix)
         {
             double t = camera.Type == ProjectionType.Perspective ? 3 : 10;
             Point3D o = new Point3D(0, 0, 0);

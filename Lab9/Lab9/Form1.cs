@@ -180,6 +180,16 @@ namespace Lab9
                 }
             };
 
+            btnLightTranslate.Click += (s, e) =>
+            {
+                Point3D lp = polyhedronDrawer.Camera.LightPosition;
+                polyhedronDrawer.Camera.LightPosition = new Point3D(
+                    lp.X + (double)numLdx.Value,
+                    lp.Y + (double)numLdy.Value,
+                    lp.Z + (double)numLdz.Value);
+                polyhedronDrawer.Invalidate();
+            };
+
             btnApplyLight.Click += (s, e) =>
             {
                 polyhedronDrawer.Camera.LightPosition = new Point3D((double)numLx.Value, (double)numLy.Value, (double)numLz.Value);
@@ -190,7 +200,7 @@ namespace Lab9
             {
                 using (var dlg = new ColorDialog { Color = polyhedronDrawer.Camera.ObjectColor })
                 {
-                    if (dlg.ShowDialog() != DialogResult.OK) 
+                    if (dlg.ShowDialog() != DialogResult.OK)
                         return;
                     polyhedronDrawer.Camera.ObjectColor = dlg.Color;
                     pnlColor.BackColor = dlg.Color;
@@ -202,7 +212,7 @@ namespace Lab9
             {
                 using (var dlg = new OpenFileDialog { Filter = "Images|*.png;*.jpg;*.bmp" })
                 {
-                    if (dlg.ShowDialog() != DialogResult.OK) 
+                    if (dlg.ShowDialog() != DialogResult.OK)
                         return;
                     polyhedronDrawer.SetTexture(dlg.FileName);
                     polyhedronDrawer.Invalidate();
@@ -280,6 +290,11 @@ namespace Lab9
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLight_Click(object sender, EventArgs e)
         {
 
         }
