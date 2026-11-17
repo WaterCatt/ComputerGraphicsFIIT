@@ -39,7 +39,7 @@ namespace Lab9
                             double x = ParseDouble(parts[1]);
                             double y = ParseDouble(parts[2]);
                             double z = ParseDouble(parts[3]);
-                            polyhedron.VertexNormals.Add(new Point3D(x, y, z));
+                            polyhedron.ImportedNormals.Add(new Point3D(x, y, z));
                             break;
                         }
                     case "vt":
@@ -70,9 +70,11 @@ namespace Lab9
                                 if (token.Length > 2 && token[2].Length > 0)
                                 {
                                     int ni = int.Parse(token[2], CultureInfo.InvariantCulture) - 1;
-                                    if (ni < 0) ni = polyhedron.VertexNormals.Count + ni;
+                                    if (ni < 0) ni = polyhedron.ImportedNormals.Count + ni;
                                     nIdx.Add(ni);
                                 }
+                                else
+                                    nIdx.Add(-1);
                             }
                             if (vIdx.Count >= 3)
                                 polyhedron.Faces.Add(new Polygon(vIdx, nIdx, tIdx));
@@ -102,8 +104,7 @@ namespace Lab9
                 polyhedron.Edges.Add(e);
 
             polyhedron.ComputeFaceNormals();
-            if (polyhedron.VertexNormals.Count != polyhedron.Vertices.Count)
-                polyhedron.ComputeVertexNormals();
+            polyhedron.ComputeVertexNormals();
 
             return polyhedron;
         }
@@ -115,9 +116,10 @@ namespace Lab9
                 foreach (var v in polyhedron.Vertices)
                     writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "v {0} {1} {2}", v.X, v.Y, v.Z));
 
-                if (polyhedron.VertexNormals.Count == polyhedron.Vertices.Count)
+                bool useImportedNormals = polyhedron.ImportedNormals.Count > 0;
+                if (useImportedNormals)
                 {
-                    foreach (var n in polyhedron.VertexNormals)
+                    foreach (var n in polyhedron.ImportedNormals)
                         writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "vn {0} {1} {2}", n.X, n.Y, n.Z));
                 }
 
@@ -127,7 +129,7 @@ namespace Lab9
                         writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "vt {0} {1}", t.X, t.Y));
                 }
 
-                bool hasNormals = polyhedron.VertexNormals.Count == polyhedron.Vertices.Count;
+                bool hasNormals = useImportedNormals;
                 bool hasTex = polyhedron.TexCoords.Count > 0;
 
                 if (polyhedron.Faces != null && polyhedron.Faces.Count > 0)
@@ -145,7 +147,7 @@ namespace Lab9
                                 token += "/" + (face.TexCoordIndices[i] + 1).ToString(CultureInfo.InvariantCulture);
                             else if (hasNormals)
                                 token += "/";
-                            if (hasNormals && i < face.NormalIndices.Count)
+                            if (hasNormals && i < face.NormalIndices.Count && face.NormalIndices[i] >= 0 && face.NormalIndices[i] < polyhedron.ImportedNormals.Count)
                                 token += "/" + (face.NormalIndices[i] + 1).ToString(CultureInfo.InvariantCulture);
                             writer.Write(" " + token);
                         }

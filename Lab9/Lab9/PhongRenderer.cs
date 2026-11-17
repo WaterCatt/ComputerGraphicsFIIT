@@ -105,7 +105,9 @@ namespace Lab9
                     Point3D sb = new Point3D(screen[ib].X, screen[ib].Y, depth[ib]);
                     Point3D sc = new Point3D(screen[ic].X, screen[ic].Y, depth[ic]);
 
-                    Point3D na = p.VertexNormals[ia], nb = p.VertexNormals[ib], nc = p.VertexNormals[ic];
+                    Point3D na = p.GetCornerNormal(face, 0);
+                    Point3D nb = p.GetCornerNormal(face, k);
+                    Point3D nc = p.GetCornerNormal(face, k + 1);
                     Point3D wa = world[ia], wb = world[ib], wc = world[ic];
                     double iwA = invW[ia], iwB = invW[ib], iwC = invW[ic];
 

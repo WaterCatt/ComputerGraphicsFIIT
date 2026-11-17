@@ -11,6 +11,7 @@ namespace Lab9
         public HashSet<Tuple<int, int>> Edges;
 
         public List<Point3D> VertexNormals;
+        public List<Point3D> ImportedNormals;
         public List<Point3D> FaceNormals;
         public List<PointF> TexCoords;
 
@@ -20,6 +21,7 @@ namespace Lab9
             Faces = new List<Polygon>();
             Edges = new HashSet<Tuple<int, int>>();
             VertexNormals = new List<Point3D>();
+            ImportedNormals = new List<Point3D>();
             FaceNormals = new List<Point3D>();
             TexCoords = new List<PointF>();
         }
@@ -119,6 +121,30 @@ namespace Lab9
                 else n = new Point3D(0, 0, 1);
                 VertexNormals.Add(n);
             }
+        }
+
+        public Point3D GetCornerNormal(Polygon face, int cornerIndex)
+        {
+            if (face != null && cornerIndex >= 0 && cornerIndex < face.NormalIndices.Count)
+            {
+                int normalIndex = face.NormalIndices[cornerIndex];
+                if (normalIndex >= 0 && normalIndex < ImportedNormals.Count)
+                {
+                    Point3D imported = ImportedNormals[normalIndex].Copy();
+                    imported.Normalize();
+                    if (imported.Length() > 1e-9)
+                        return imported;
+                }
+            }
+
+            if (face != null && cornerIndex >= 0 && cornerIndex < face.VertexIndices.Count)
+            {
+                int vertexIndex = face.VertexIndices[cornerIndex];
+                if (vertexIndex >= 0 && vertexIndex < VertexNormals.Count)
+                    return VertexNormals[vertexIndex].Copy();
+            }
+
+            return new Point3D(0, 0, 1);
         }
 
         public Point3D GetFaceCenter(Polygon face)

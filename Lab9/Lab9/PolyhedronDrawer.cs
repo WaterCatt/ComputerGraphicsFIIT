@@ -16,11 +16,6 @@ namespace Lab9
         Textured
     }
 
-    public static class GouraudRenderer
-    {
-        public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h) { }
-    }
-
     public static class TextureRenderer
     {
         public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h, Bitmap texture) { }

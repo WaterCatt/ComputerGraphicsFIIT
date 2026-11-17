@@ -6,6 +6,8 @@ namespace Lab9
     {
         public void ApplyTransformation(double[,] matrix)
         {
+            TransformImportedNormals(matrix);
+
             for (int i = 0; i < Vertices.Count; i++)
             {
                 var v = Vertices[i];
@@ -26,6 +28,35 @@ namespace Lab9
                 ComputeVertexNormals();
             else
                 ComputeFaceNormals();
+        }
+
+        private void TransformImportedNormals(double[,] matrix)
+        {
+            if (ImportedNormals.Count == 0)
+                return;
+
+            double a = matrix[0, 0], b = matrix[0, 1], c = matrix[0, 2];
+            double d = matrix[1, 0], e = matrix[1, 1], f = matrix[1, 2];
+            double g = matrix[2, 0], h = matrix[2, 1], i = matrix[2, 2];
+            double det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+            if (Math.Abs(det) <= 1e-12)
+                return;
+
+            // Normals transform by the inverse transpose of the linear part.
+            double[,] normalMatrix = {
+                { (e * i - f * h) / det, (f * g - d * i) / det, (d * h - e * g) / det },
+                { (c * h - b * i) / det, (a * i - c * g) / det, (b * g - a * h) / det },
+                { (b * f - c * e) / det, (c * d - a * f) / det, (a * e - b * d) / det }
+            };
+
+            foreach (Point3D normal in ImportedNormals)
+            {
+                double x = normal.X, y = normal.Y, z = normal.Z;
+                normal.X = normalMatrix[0, 0] * x + normalMatrix[0, 1] * y + normalMatrix[0, 2] * z;
+                normal.Y = normalMatrix[1, 0] * x + normalMatrix[1, 1] * y + normalMatrix[1, 2] * z;
+                normal.Z = normalMatrix[2, 0] * x + normalMatrix[2, 1] * y + normalMatrix[2, 2] * z;
+                normal.Normalize();
+            }
         }
 
         public void Translate(double tx, double ty, double tz)
