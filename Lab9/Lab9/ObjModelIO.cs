@@ -58,19 +58,22 @@ namespace Lab9
                             {
                                 var token = parts[i].Split('/');
                                 int vi = int.Parse(token[0], CultureInfo.InvariantCulture) - 1;
-                                if (vi < 0) vi = polyhedron.Vertices.Count + vi;
+                                if (vi < 0) 
+                                    vi = polyhedron.Vertices.Count + vi;
                                 vIdx.Add(vi);
 
                                 if (token.Length > 1 && token[1].Length > 0)
                                 {
                                     int ti = int.Parse(token[1], CultureInfo.InvariantCulture) - 1;
-                                    if (ti < 0) ti = polyhedron.TexCoords.Count + ti;
+                                    if (ti < 0) 
+                                        ti = polyhedron.TexCoords.Count + ti;
                                     tIdx.Add(ti);
                                 }
                                 if (token.Length > 2 && token[2].Length > 0)
                                 {
                                     int ni = int.Parse(token[2], CultureInfo.InvariantCulture) - 1;
-                                    if (ni < 0) ni = polyhedron.ImportedNormals.Count + ni;
+                                    if (ni < 0) 
+                                        ni = polyhedron.ImportedNormals.Count + ni;
                                     nIdx.Add(ni);
                                 }
                                 else

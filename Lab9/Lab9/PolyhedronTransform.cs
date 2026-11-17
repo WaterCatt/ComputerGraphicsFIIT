@@ -42,7 +42,7 @@ namespace Lab9
             if (Math.Abs(det) <= 1e-12)
                 return;
 
-            // Normals transform by the inverse transpose of the linear part.
+            //обратная транспонированная матрица: алг. дополнение матрицы / определитель
             double[,] normalMatrix = {
                 { (e * i - f * h) / det, (f * g - d * i) / det, (d * h - e * g) / det },
                 { (c * h - b * i) / det, (a * i - c * g) / det, (b * g - a * h) / det },

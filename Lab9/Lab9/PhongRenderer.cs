@@ -111,7 +111,7 @@ namespace Lab9
                     Point3D wa = world[ia], wb = world[ib], wc = world[ic];
                     double iwA = invW[ia], iwB = invW[ib], iwC = invW[ic];
 
-                    Rasterizer.FillTriangleWithWeights(sa, sb, sc, w, h, (index, k1, k2, k3, z) =>
+                    Rasterizer.FillTriangle(sa, sb, sc, w, h, (index, k1, k2, k3, z) =>
                     {
                         if (z >= zBuffer[index])
                             return;

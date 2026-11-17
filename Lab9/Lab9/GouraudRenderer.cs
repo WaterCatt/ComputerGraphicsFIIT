@@ -58,7 +58,6 @@ namespace Lab9
                 if (face.VertexIndices.Count < 3)
                     continue;
 
-                // Triangulate a polygon as a fan while keeping each face-corner normal.
                 int cornerA = 0;
                 int vertexA = face.VertexIndices[cornerA];
                 for (int cornerB = 1; cornerB < face.VertexIndices.Count - 1; cornerB++)
@@ -74,7 +73,7 @@ namespace Lab9
                     Color colorC = ShadeCorner(polyhedron, face, cornerC, vertexC, camera);
                     double invWA = invW[vertexA], invWB = invW[vertexB], invWC = invW[vertexC];
 
-                    Rasterizer.FillTriangleWithWeights(screen[vertexA], screen[vertexB], screen[vertexC], width, height,
+                    Rasterizer.FillTriangle(screen[vertexA], screen[vertexB], screen[vertexC], width, height,
                         (pixelIndex, baryA, baryB, baryC, depth) =>
                         {
                             if (depth >= zBuffer[pixelIndex])
