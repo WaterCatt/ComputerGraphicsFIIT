@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Lab9
@@ -18,7 +20,190 @@ namespace Lab9
 
     public static class TextureRenderer
     {
-        public static void Draw(Graphics g, Polyhedron p, Camera c, int w, int h, Bitmap texture) { }
+        private static Bitmap? savedTexture;
+        private static int[] texturePixels = Array.Empty<int>();
+
+        public static void Draw(Graphics graphics, Polyhedron polyhedron, Camera camera, int width, int height, Bitmap? texture)
+        {
+            if (width <= 0 || height <= 0 || texture == null)
+            {
+                return;
+            }
+
+            LoadTexturePixels(texture);
+            SetTexCoords(polyhedron);
+            Rasterizer.ResetBuffers(width, height, out double[] zBuffer, out int[] pixels);
+
+            double[,] matrix = MatrixOps.Multiply(camera.GetProjectionMatrix(), camera.GetViewMatrix());
+            Point3D[] points = new Point3D[polyhedron.Vertices.Count];
+            double[] invW = new double[polyhedron.Vertices.Count];
+            bool[] visible = new bool[polyhedron.Vertices.Count];
+
+            float mult;
+
+            if (camera.Type == ProjectionType.Perspective)
+            {
+                mult = Math.Min(width, height) / 2f;
+            }
+            else
+            {
+                mult = Math.Min(width, height) / (2f * 3.5f);
+            }
+
+            for (int i = 0; i < polyhedron.Vertices.Count; i++)
+            {
+                Point3D p = polyhedron.Vertices[i];
+
+                double x = p.X * matrix[0, 0] + p.Y * matrix[0, 1] + p.Z * matrix[0, 2] + p.W * matrix[0, 3];
+                double y = p.X * matrix[1, 0] + p.Y * matrix[1, 1] + p.Z * matrix[1, 2] + p.W * matrix[1, 3];
+                double z = p.X * matrix[2, 0] + p.Y * matrix[2, 1] + p.Z * matrix[2, 2] + p.W * matrix[2, 3];
+                double w = p.X * matrix[3, 0] + p.Y * matrix[3, 1] + p.Z * matrix[3, 2] + p.W * matrix[3, 3];
+
+                if (camera.Type == ProjectionType.Perspective)
+                {
+                    if (w <= 0.05)
+                    {
+                        continue;
+                    }
+
+                    invW[i] = 1.0 / w;
+                    x /= w;
+                    y /= w;
+                    z /= w;
+                }
+                else
+                {
+                    invW[i] = 1;
+                    z = -z;
+                }
+
+                points[i] = new Point3D(width / 2.0 + x * mult, height / 2.0 - y * mult, z);
+                visible[i] = true;
+            }
+
+            foreach (Polygon face in polyhedron.Faces)
+            {
+                if (face.VertexIndices.Count < 3 || face.TexCoordIndices.Count != face.VertexIndices.Count)
+                {
+                    continue;
+                }
+
+                int a = face.VertexIndices[0];
+                PointF ta = polyhedron.TexCoords[face.TexCoordIndices[0]];
+
+                for (int i = 1; i < face.VertexIndices.Count - 1; i++)
+                {
+                    int b = face.VertexIndices[i];
+                    int c = face.VertexIndices[i + 1];
+
+                    if (!visible[a] || !visible[b] || !visible[c])
+                    {
+                        continue;
+                    }
+
+                    PointF tb = polyhedron.TexCoords[face.TexCoordIndices[i]];
+                    PointF tc = polyhedron.TexCoords[face.TexCoordIndices[i + 1]];
+
+                    Rasterizer.FillTriangle(points[a], points[b], points[c], width, height, zBuffer, pixels, (k1, k2, k3, z) =>
+                    {
+                        double k1p = k1 * invW[a];
+                        double k2p = k2 * invW[b];
+                        double k3p = k3 * invW[c];
+                        double sum = k1p + k2p + k3p;
+
+                        double u = (ta.X * k1p + tb.X * k2p + tc.X * k3p) / sum;
+                        double v = (ta.Y * k1p + tb.Y * k2p + tc.Y * k3p) / sum;
+
+                        int textureX = (int)(u * (texture.Width - 1));
+                        int textureY = (int)((1 - v) * (texture.Height - 1));
+
+                        textureX = Math.Max(0, Math.Min(texture.Width - 1, textureX));
+                        textureY = Math.Max(0, Math.Min(texture.Height - 1, textureY));
+
+                        return texturePixels[textureY * texture.Width + textureX];
+                    });
+                }
+            }
+
+            using (Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb))
+            {
+                BitmapData data = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+                Marshal.Copy(pixels, 0, data.Scan0, pixels.Length);
+                bitmap.UnlockBits(data);
+                graphics.DrawImageUnscaled(bitmap, 0, 0);
+            }
+        }
+
+        private static void LoadTexturePixels(Bitmap texture)
+        {
+            if (savedTexture == texture)
+            {
+                return;
+            }
+
+            texturePixels = new int[texture.Width * texture.Height];
+
+            for (int y = 0; y < texture.Height; y++)
+            {
+                for (int x = 0; x < texture.Width; x++)
+                {
+                    texturePixels[y * texture.Width + x] = texture.GetPixel(x, y).ToArgb();
+                }
+            }
+
+            savedTexture = texture;
+        }
+
+        private static void SetTexCoords(Polyhedron polyhedron)
+        {
+            foreach (Polygon face in polyhedron.Faces)
+            {
+                if (face.TexCoordIndices.Count == face.VertexIndices.Count)
+                {
+                    continue;
+                }
+
+                face.TexCoordIndices.Clear();
+                int count = face.VertexIndices.Count;
+                PointF[] coords;
+
+                if (count == 3)
+                {
+                    coords = new PointF[]
+                    {
+                        new PointF(0.5f, 1),
+                        new PointF(0, 0),
+                        new PointF(1, 0)
+                    };
+                }
+                else if (count == 4)
+                {
+                    coords = new PointF[]
+                    {
+                        new PointF(0, 1),
+                        new PointF(0, 0),
+                        new PointF(1, 0),
+                        new PointF(1, 1)
+                    };
+                }
+                else
+                {
+                    coords = new PointF[count];
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        double angle = 2 * Math.PI * i / count - Math.PI / 2;
+                        coords[i] = new PointF(0.5f + 0.5f * (float)Math.Cos(angle), 0.5f + 0.5f * (float)Math.Sin(angle));
+                    }
+                }
+
+                foreach (PointF coord in coords)
+                {
+                    polyhedron.TexCoords.Add(coord);
+                    face.TexCoordIndices.Add(polyhedron.TexCoords.Count - 1);
+                }
+            }
+        }
     }
 
     public class PolyhedronDrawer : Panel
