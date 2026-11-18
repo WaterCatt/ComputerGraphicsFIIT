@@ -34,7 +34,10 @@ namespace Lab9
             SetTexCoords(polyhedron);
             Rasterizer.ResetBuffers(width, height, out double[] zBuffer, out int[] pixels);
 
-            double[,] matrix = MatrixOps.Multiply(camera.GetProjectionMatrix(), camera.GetViewMatrix());
+            double[,] view = camera.GetViewMatrix();
+            double[,] projection = camera.GetProjectionMatrix();
+
+            double[,] matrix = MatrixOps.Multiply(projection, view);
             Point3D[] points = new Point3D[polyhedron.Vertices.Count];
             double[] invW = new double[polyhedron.Vertices.Count];
             bool[] visible = new bool[polyhedron.Vertices.Count];
@@ -77,7 +80,10 @@ namespace Lab9
                     z = -z;
                 }
 
-                points[i] = new Point3D(width / 2.0 + x * mult, height / 2.0 - y * mult, z);
+                double screenX = width / 2.0 + x * mult;
+                double screenY = height / 2.0 - y * mult;
+
+                points[i] = new Point3D(screenX, screenY, z);
                 visible[i] = true;
             }
 
@@ -107,14 +113,18 @@ namespace Lab9
                     Rasterizer.FillTriangle(points[a], points[b], points[c], width, height, (index, k1, k2, k3, z) =>
                     {
                         if (z >= zBuffer[index])
+                        {
                             return;
+                        }
 
                         double k1p = k1 * invW[a];
                         double k2p = k2 * invW[b];
                         double k3p = k3 * invW[c];
                         double sum = k1p + k2p + k3p;
                         if (sum <= 1e-12)
+                        {
                             return;
+                        }
 
                         double u = (ta.X * k1p + tb.X * k2p + tc.X * k3p) / sum;
                         double v = (ta.Y * k1p + tb.Y * k2p + tc.Y * k3p) / sum;
