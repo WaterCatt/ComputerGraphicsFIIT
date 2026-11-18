@@ -87,7 +87,7 @@ namespace Lab9
 
             Point3D lightPos = c.LightPosition;
             Color baseColor = c.ObjectColor;
-            const int toonLevels = 4;
+            const int toonLevels = 10;
 
             foreach (var face in p.Faces)
             {
