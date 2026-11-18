@@ -104,12 +104,17 @@ namespace Lab9
                     PointF tb = polyhedron.TexCoords[face.TexCoordIndices[i]];
                     PointF tc = polyhedron.TexCoords[face.TexCoordIndices[i + 1]];
 
-                    Rasterizer.FillTriangle(points[a], points[b], points[c], width, height, zBuffer, pixels, (k1, k2, k3, z) =>
+                    Rasterizer.FillTriangle(points[a], points[b], points[c], width, height, (index, k1, k2, k3, z) =>
                     {
+                        if (z >= zBuffer[index])
+                            return;
+
                         double k1p = k1 * invW[a];
                         double k2p = k2 * invW[b];
                         double k3p = k3 * invW[c];
                         double sum = k1p + k2p + k3p;
+                        if (sum <= 1e-12)
+                            return;
 
                         double u = (ta.X * k1p + tb.X * k2p + tc.X * k3p) / sum;
                         double v = (ta.Y * k1p + tb.Y * k2p + tc.Y * k3p) / sum;
@@ -120,9 +125,11 @@ namespace Lab9
                         textureX = Math.Max(0, Math.Min(texture.Width - 1, textureX));
                         textureY = Math.Max(0, Math.Min(texture.Height - 1, textureY));
 
-                        return texturePixels[textureY * texture.Width + textureX];
+                        zBuffer[index] = z;
+                        pixels[index] = texturePixels[textureY * texture.Width + textureX];
                     });
                 }
+
             }
 
             using (Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb))
